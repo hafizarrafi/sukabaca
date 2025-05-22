@@ -35,6 +35,8 @@ class NewsResource extends Resource
                     ->required(),
 
                 Forms\Components\TextInput::make('title')
+                    ->minLength(25)
+                    ->maxLength(150)
                     ->live(onBlur: true)
                     ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state)))
                     ->required(),

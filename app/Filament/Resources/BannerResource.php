@@ -23,9 +23,28 @@ class BannerResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('news_id')
-                    ->relationship('news', 'title')
-                    ->required(),
+              Forms\Components\Select::make('news_id')
+                ->label('Judul Berita')
+                ->relationship(
+                    name: 'news',
+                    titleAttribute: 'title',
+                    modifyQueryUsing: function ($query, $livewire) {
+                        // Ambil semua news_id yang sudah digunakan
+                        $usedNewsIds = Banner::pluck('news_id')->toArray();
+
+                        // Jika sedang edit, ambil news_id milik record yang sedang diedit
+                        $currentRecordNewsId = $livewire->record->news_id ?? null;
+
+                        // Keluarkan current record dari pengecualian
+                        if ($currentRecordNewsId) {
+                            $usedNewsIds = array_diff($usedNewsIds, [$currentRecordNewsId]);
+                        }
+
+                        // Filter news yang belum digunakan
+                        return $query->whereNotIn('id', $usedNewsIds);
+                    }
+                )
+                ->required(),
             ]);
     }
 

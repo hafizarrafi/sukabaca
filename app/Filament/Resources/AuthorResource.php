@@ -23,7 +23,9 @@ class AuthorResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                Forms\Components\TextInput::make('name')->alpha()
+                    ->minLength(4)
+                    ->maxLength(255)
                     ->required(),
                 Forms\Components\TextInput::make('username')
                     ->required(),
