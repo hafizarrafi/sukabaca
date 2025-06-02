@@ -10,7 +10,7 @@
   @if($news->count() > 0)
     <div class="grid sm:grid-cols-1 gap-5 lg:grid-cols-4">
       @foreach ($news as $item)
-        <a href="{{ route('news.show', $item->id) }}" class="block border border-slate-200 rounded-xl p-4 hover:border-primary hover:shadow-lg transition duration-300 ease-in-out">
+        <a href="{{ route('news.detail', $item->slug) }}" class="block border border-slate-200 rounded-xl p-4 hover:border-primary hover:shadow-lg transition duration-300 ease-in-out">
           <div class="relative">
             <div class="bg-primary text-white rounded-full w-fit px-4 py-1 font-normal text-sm absolute top-2 left-2 z-10">
               {{ $item->newsCategory->title }}
