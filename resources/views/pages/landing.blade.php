@@ -94,9 +94,7 @@
         </div>
 
         <!-- Berita 1 -->
-         @foreach ($news->skip(1) as $new )
-         
-         
+         @foreach ($news->skip(1)->take(3) as $new)
         <a href="{{ route('news.detail', $new->slug) }}"
           class="relative col-span-5 flex flex-col h-fit md:flex-row gap-3 border border-slate-200 p-3 rounded-xl hover:border-primary hover:cursor-pointer">
           <div class="bg-primary text-white rounded-full w-fit px-4 py-1 font-normal ml-2 mt-2 absolute text-sm">
@@ -112,7 +110,7 @@
         </a>
           @endforeach
         </div>
-        </div>
+    </div>
     <!-- Author -->
     <div class="flex flex-col px-4 md:px-10 lg:px-14 mt-10">
       <div class="flex flex-col md:flex-row justify-between items-center w-full mb-6">

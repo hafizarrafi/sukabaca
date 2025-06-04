@@ -24,7 +24,9 @@ class NewsCategoryResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')->alpha()
+                Forms\Components\TextInput::make('title')
+                ->regex('/^[a-zA-Z\s]+$/')
+                ->helperText('Name can only contain letters and spaces')
                 ->live(onBlur: true)
                 ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state)))
                 ->required(),
@@ -38,7 +40,7 @@ class NewsCategoryResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title'),
-                Tables\Columns\TextColumn::make('slug'),
+                
             ])
             ->filters([
                 //

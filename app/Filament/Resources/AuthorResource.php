@@ -23,7 +23,9 @@ class AuthorResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')->alpha()
+                Forms\Components\TextInput::make('name')
+                    ->regex('/^[a-zA-Z\s]+$/')
+                    ->helperText('Name can only contain letters and spaces')
                     ->minLength(4)
                     ->maxLength(255)
                     ->required(),

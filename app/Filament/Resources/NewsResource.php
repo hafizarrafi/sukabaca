@@ -62,8 +62,10 @@ class NewsResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('author.name'),
                 Tables\Columns\TextColumn::make('newsCategory.title'),
-                Tables\Columns\TextColumn::make('title'),
-                Tables\Columns\TextColumn::make('slug'),
+                Tables\Columns\TextColumn::make('title')
+                ->extraAttributes([
+                'style' => 'display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; white-space: normal;'     ])
+                ->limit(90), 
                 Tables\Columns\ImageColumn::make('thumbnail'),
                 Tables\Columns\ToggleColumn::make('is_featured')
 
